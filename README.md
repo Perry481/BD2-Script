@@ -37,7 +37,7 @@ python template_matching.py
 ## 腳本邏輯
 如果您想修改想要刷取的卡，請確保新圖片與原圖片具有相同的名稱並放置在相同的目錄中：
 
--`template1.png：專武或角色 1 圖片` 
--`template2.png：專武或角色 2 圖片`
--`ultra_rare.png：Ultra rare 專武UR圖片`
+- `template1.png：專武或角色 1 圖片` 
+- `template2.png：專武或角色 2 圖片`
+- `ultra_rare.png：Ultra rare 專武UR圖片`
 注意截圖方式，盡量符合原先格式。
