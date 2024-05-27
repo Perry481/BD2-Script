@@ -10,6 +10,10 @@
 - 持續運行直到找到所需模板或按下F9鍵退出。
 
 ## 先決條件
+安裝Python：
+
+下載並安裝Python，請訪問Python官方網站並根據您的操作系統下載合適的版本。
+安裝時請勾選“Add Python to PATH”選項。
 
 在運行此腳本之前，請確保您的系統中安裝了以下Python庫：
 
@@ -23,4 +27,21 @@
 
 ```sh
 pip install opencv-python numpy pyautogui keyboard pillow
+
+運行腳本：
+
+在包含上述文件的目錄中打開命令提示符或終端。
+輸入以下命令來運行腳本：
+
+```sh
+python script.py
+
+##腳本邏輯
+
+如果您想修改想要刷取的卡，請確保新圖片與原圖片具有相同的名稱並放置在相同的目錄中：
+##注意截圖方式,盡量符合原先格式
+template1.png：專武or角色 1 圖片
+template2.png：專武or角色 2 圖片
+或自行新增template3
+ultra_rare.png： Ultra rare 專武UR圖片
 
