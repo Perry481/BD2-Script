@@ -31,7 +31,7 @@ pip install opencv-python numpy pyautogui keyboard pillow
 ## 運行腳本
 在包含上述文件的目錄中打開命令提示符或終端。輸入以下命令來運行腳本：
 ```
-python script.py
+python template_matching.py
 ```
 
 ## 腳本邏輯
