@@ -11,7 +11,7 @@
 
 ## 先決條件
 
-## 安裝Python
+### 安裝Python
 
 下載並安裝Python，請訪問[Python官方網站](https://www.python.org)並根據您的操作系統下載合適的版本。安裝時請勾選“Add Python to PATH”選項。
 
