@@ -11,7 +11,7 @@
 
 ## 先決條件
 
-### 安裝Python
+## 安裝Python
 
 下載並安裝Python，請訪問[Python官方網站](https://www.python.org)並根據您的操作系統下載合適的版本。安裝時請勾選“Add Python to PATH”選項。
 
@@ -28,13 +28,13 @@
 ```
 pip install opencv-python numpy pyautogui keyboard pillow
 ```
-運行腳本
+## 運行腳本
 在包含上述文件的目錄中打開命令提示符或終端。輸入以下命令來運行腳本：
-
-sh
-複製程式碼
+```
 python script.py
-腳本邏輯
+```
+
+## 腳本邏輯
 如果您想修改想要刷取的卡，請確保新圖片與原圖片具有相同的名稱並放置在相同的目錄中：
 
 template1.png：專武或角色 1 圖片
