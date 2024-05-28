@@ -5,13 +5,26 @@ import time
 import keyboard
 import threading
 from PIL import Image
+import sys
+import os
 
 # 用來停止腳本的標誌
 stop_script = False
 
 
+def resource_path(relative_path):
+    """ Get absolute path to resource, works for dev and for PyInstaller """
+    try:
+        # PyInstaller creates a temp folder and stores path in _MEIPASS
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
+
+
 def load_image(image_path):
-    image = cv2.imread(image_path, cv2.IMREAD_COLOR)
+    absolute_path = resource_path(image_path)
+    image = cv2.imread(absolute_path, cv2.IMREAD_COLOR)
     if image is None:
         print(f"錯誤：無法載入圖片 {image_path}")
     else:
@@ -47,7 +60,6 @@ def capture_screenshot():
     screenshot = pyautogui.screenshot()
     screenshot = np.array(screenshot)
     screenshot = cv2.cvtColor(screenshot, cv2.COLOR_RGB2BGR)
-    # print(f"已截取螢幕截圖")
     return screenshot
 
 
@@ -101,7 +113,7 @@ def process_buttons_and_templates(iteration, retry_template, retry_confirm_templ
         # 點擊retry按鈕
         pyautogui.click(retry_points[0])
         print(f"已點擊retry按鈕，座標 {retry_points[0]}")
-        time.sleep(1.5) # 根據電腦效能修改,建議為 1~2秒
+        time.sleep(1.5)  # 根據電腦效能修改,建議為 1~2秒
 
         # 捕捉retry confirm按鈕後的截圖
         screenshot = capture_screenshot()
@@ -111,7 +123,7 @@ def process_buttons_and_templates(iteration, retry_template, retry_confirm_templ
         if retry_confirm_points:
             pyautogui.click(retry_confirm_points[0])
             print(f"已點擊retry confirm按鈕，座標 {retry_confirm_points[0]}")
-            time.sleep(1.5) # 根據電腦效能修改,建議為 1~2秒
+            time.sleep(1.5)  # 根據電腦效能修改,建議為 1~2秒
 
             # 捕捉skip按鈕後的截圖
             screenshot = capture_screenshot()
@@ -120,7 +132,7 @@ def process_buttons_and_templates(iteration, retry_template, retry_confirm_templ
             if skip_points:
                 pyautogui.click(skip_points[0])
                 print(f"已點擊skip按鈕，座標 {skip_points[0]}")
-                time.sleep(1.5) # 根據電腦效能修改,建議為 1~2秒
+                time.sleep(1.5)  # 根據電腦效能修改,建議為 1~2秒
 
                 # 捕捉截圖並檢查模板和Ultra rare
                 screenshot = capture_screenshot()
@@ -148,20 +160,14 @@ def main():
     threading.Thread(target=check_stop_script, daemon=True).start()
 
     # 載入按鈕模板
-    retry_path = 'retry.png'
-    retry_confirm_path = 'retry_confirm.png'
-    skip_path = 'skip.png'
-    retry_template = load_image(retry_path)
-    retry_confirm_template = load_image(retry_confirm_path)
-    skip_template = load_image(skip_path)
+    retry_template = load_image('retry.png')
+    retry_confirm_template = load_image('retry_confirm.png')
+    skip_template = load_image('skip.png')
 
     # 載入目標模板
-    template1_path = 'template1.png'
-    template2_path = 'template2.png'
-    ultra_rare_path = 'ultra_rare.png'
-    template1 = load_image(template1_path)
-    template2 = load_image(template2_path)
-    ultra_rare = load_image(ultra_rare_path)
+    template1 = load_image('template1.png')
+    template2 = load_image('template2.png')
+    ultra_rare = load_image('ultra_rare.png')
 
     iteration = 0
     while not stop_script:
