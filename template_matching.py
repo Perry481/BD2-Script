@@ -156,29 +156,34 @@ def check_stop_script():
 def main():
     global stop_script
 
-    # 啟動線程來檢查F9鍵按下
-    threading.Thread(target=check_stop_script, daemon=True).start()
+    try:
+        # 啟動線程來檢查F9鍵按下
+        threading.Thread(target=check_stop_script, daemon=True).start()
 
-    # 載入按鈕模板
-    retry_template = load_image('retry.png')
-    retry_confirm_template = load_image('retry_confirm.png')
-    skip_template = load_image('skip.png')
+        # 載入按鈕模板
+        retry_template = load_image('retry.png')
+        retry_confirm_template = load_image('retry_confirm.png')
+        skip_template = load_image('skip.png')
 
-    # 載入目標模板
-    template1 = load_image('template1.png')
-    template2 = load_image('template2.png')
-    ultra_rare = load_image('ultra_rare.png')
+        # 載入目標模板
+        template1 = load_image('template1.png')
+        template2 = load_image('template2.png')
+        ultra_rare = load_image('ultra_rare.png')
 
-    iteration = 0
-    while not stop_script:
-        iteration += 1
-        print(f"運行次數 {iteration}")
-        found = process_buttons_and_templates(
-            iteration, retry_template, retry_confirm_template, skip_template, template1, template2, ultra_rare)
-        if found or stop_script:
-            break
+        iteration = 0
+        while not stop_script:
+            iteration += 1
+            print(f"運行次數 {iteration}")
+            found = process_buttons_and_templates(
+                iteration, retry_template, retry_confirm_template, skip_template, template1, template2, ultra_rare)
+            if found or stop_script:
+                break
 
-        time.sleep(0.1)
+            time.sleep(0.1)
+    except Exception as e:
+        print(f"運行過程中出現錯誤: {e}")
+    finally:
+        input("按下Enter鍵退出終端...")
 
 
 if __name__ == "__main__":
